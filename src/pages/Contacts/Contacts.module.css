@@ -1,0 +1,14 @@
+.wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+}
+.phonebook {
+  font-size: 32px;
+}
+.contacts {
+  font-size: 35px;
+}
+
+.headerColor {
+  color: #009fe3;
+}

@@ -1,0 +1,8 @@
+.homePageBook {
+  margin: 0 auto;
+  background-image: url('../../../public/homePageLogo.png');
+  width: 600px;
+  height: 400px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
