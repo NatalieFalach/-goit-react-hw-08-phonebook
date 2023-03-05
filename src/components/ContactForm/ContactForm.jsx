@@ -18,8 +18,6 @@ const ContactForm = ({ editContact, closeEditModal }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectors.selectContacts);
   const [error, setError] = useState('');
-  // const numberId = nanoid();
-  // const nameId = nanoid();
 
   const formik = useFormik({
     initialValues: {
@@ -34,8 +32,7 @@ const ContactForm = ({ editContact, closeEditModal }) => {
         item => item.name.toLocaleLowerCase() === name
       );
       if (isExists) {
-        // toast.error(`${name} is alredy in contacts`);
-        setError(`${name} is alredy in contacts`);
+        setError(`${name} is alredy in your contact list`);
       } else if (editContact) {
         dispatch(operations.updateContact({ id: editContact.id, values }));
         closeEditModal();
@@ -91,7 +88,6 @@ const ContactForm = ({ editContact, closeEditModal }) => {
           </Button>
         </form>
       </Box>
-      {/* <Toaster position="top-right" /> */}
     </>
   );
 };

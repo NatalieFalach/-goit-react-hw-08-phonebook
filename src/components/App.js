@@ -7,6 +7,7 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import NotFound from 'pages/NotFound/NotFound';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 const HomePage = lazy(() => import('../pages/Home/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -22,7 +23,12 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Backdrop
+      open
+      sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
+    >
+      <CircularProgress color="inherit" />
+    </Backdrop>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>

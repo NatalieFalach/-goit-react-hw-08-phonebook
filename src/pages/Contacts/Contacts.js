@@ -5,10 +5,12 @@ import ContactForm from '../../components/ContactForm/ContactForm';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { operations, selectors } from '../../redux/contacts';
+import { CircularProgress } from '@mui/material';
 
 export default function Contacts() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectors.selectIsLoading);
+  const hasContacts = useSelector(selectors.selectHasContacts);
   const error = useSelector(selectors.selectError);
 
   useEffect(() => {
@@ -21,9 +23,18 @@ export default function Contacts() {
         Welcome to the <span className={styles.headerColor}>fone</span>book
       </h2>
       <ContactForm />
-      <Filter />
-      {isLoading && !error && <div>Loading...</div>}
-      <ContactList />
+      {hasContacts && (
+        <>
+          <Filter />
+          {isLoading && !error && (
+            <CircularProgress
+              sx={{ display: 'block', margin: '20px auto' }}
+              color="inherit"
+            />
+          )}
+          <ContactList />
+        </>
+      )}
     </div>
   );
 }

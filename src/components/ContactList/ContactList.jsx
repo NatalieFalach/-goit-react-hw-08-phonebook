@@ -6,11 +6,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, ListItemButton, ListItemIcon } from '@mui/material';
-import { AccountCircle, EditLocation, EditOutlined } from '@mui/icons-material';
+import { AccountCircle, EditOutlined } from '@mui/icons-material';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import ContactForm from 'components/ContactForm/ContactForm';
@@ -33,7 +31,6 @@ const ContactList = () => {
 
   const toggleModal = editContanct => {
     setIsOpen(isOpen => !isOpen);
-    console.log('editContact = ', editContanct);
     setEditContact(editContanct);
   };
 
@@ -73,18 +70,6 @@ const ContactList = () => {
               </ListItemButton>
             </ListItem>
           );
-
-          // return (
-          //   <li className={styles.item} key={item.id}>
-          //     {item.name}: {item.phone}
-          //     <button
-          //       className={styles.btnDelete}
-          //       onClick={() => onRemoveContact(item.id)}
-          //     >
-          //       Delete
-          //     </button>
-          //   </li>
-          // );
         })}
       </List>
       <Modal

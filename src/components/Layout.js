@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AppBar } from './AppBar/AppBar';
 import { Suspense } from 'react';
-import { Container } from '@mui/material';
+import { CircularProgress, Container } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -18,10 +18,17 @@ export const Layout = () => {
       <CssBaseline />
       <Container maxWidth="md">
         <AppBar />
-        <Suspense fallback={null}>
+        <Suspense
+          fallback={
+            <CircularProgress
+              sx={{ display: 'block', margin: '0 auto' }}
+              color="inherit"
+            />
+          }
+        >
           <Outlet />
         </Suspense>
-        <Toaster position="top-right" reverseOrder={false} />
+        <Toaster position="top-right" reverseOrder={false} duration={2500} />
       </Container>
     </ThemeProvider>
   );
