@@ -13,18 +13,6 @@ import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import ContactForm from 'components/ContactForm/ContactForm';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 420,
-  bgcolor: 'background.paper',
-  borderRadius: '8px',
-  boxShadow: 24,
-  p: 4,
-};
-
 const ContactList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [editContact, setEditContact] = useState(null);
@@ -49,7 +37,7 @@ const ContactList = () => {
             <ListItem key={item.id} sx={{ p: 0 }}>
               <ListItemAvatar>
                 <Avatar>
-                  <AccountCircle />
+                  <AccountCircle color="secondary" />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
@@ -60,12 +48,18 @@ const ContactList = () => {
               />
               <ListItemButton disableGutters>
                 <ListItemIcon sx={{ marginLeft: '15px' }}>
-                  <EditOutlined onClick={() => toggleModal(item)} />
+                  <EditOutlined
+                    onClick={() => toggleModal(item)}
+                    color="info"
+                  />
                 </ListItemIcon>
               </ListItemButton>
               <ListItemButton disableGutters>
                 <ListItemIcon sx={{ marginLeft: '10px' }}>
-                  <DeleteIcon onClick={() => onRemoveContact(item.id)} />
+                  <DeleteIcon
+                    onClick={() => onRemoveContact(item.id)}
+                    color="info"
+                  />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
@@ -74,17 +68,15 @@ const ContactList = () => {
       </List>
       <Modal
         open={isOpen}
-        onClose={() => {
-          setIsOpen(false);
-        }}
+        onClose={toggleModal}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        <Box sx={style}>
+        <Box className={css.modalBody}>
           {editContact && (
             <ContactForm
               editContact={editContact}
-              closeEditModal={() => setIsOpen(false)}
+              closeEditModal={toggleModal}
             />
           )}
         </Box>

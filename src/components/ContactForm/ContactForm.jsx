@@ -1,13 +1,13 @@
-import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import 'yup-phone';
 import { useDispatch, useSelector } from 'react-redux';
 import { operations, selectors } from '../../redux/contacts';
-import toast, { Toaster } from 'react-hot-toast';
 import { Box, Button, TextField } from '@mui/material';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import PhoneMask from 'components/PhoneMask/PhoneMask';
 
 const validationSchema = yup.object().shape({
   name: yup.string().max(30).required(),
@@ -31,6 +31,7 @@ const ContactForm = ({ editContact, closeEditModal }) => {
       const isExists = contacts.some(
         item => item.name.toLocaleLowerCase() === name
       );
+
       if (isExists) {
         setError(`${name} is alredy in your contact list`);
       } else if (editContact) {
@@ -65,11 +66,13 @@ const ContactForm = ({ editContact, closeEditModal }) => {
             sx={{ marginTop: '15px' }}
           />
           <TextField
+            InputProps={{
+              inputComponent: PhoneMask,
+            }}
             fullWidth
             id="number"
             name="number"
             label="Enter phone number"
-            type="number"
             value={formik.values.number}
             onChange={formik.handleChange}
             error={formik.touched.number && Boolean(formik.errors.number)}
@@ -90,6 +93,15 @@ const ContactForm = ({ editContact, closeEditModal }) => {
       </Box>
     </>
   );
+};
+
+ContactForm.propTypes = {
+  editContact: PropTypes.shape({
+    name: PropTypes.string,
+    number: PropTypes.string,
+    id: PropTypes.string,
+  }),
+  closeEditModal: PropTypes.func,
 };
 
 export default ContactForm;

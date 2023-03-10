@@ -1,4 +1,3 @@
-import css from './Filter.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectors } from '../../redux/contacts';
 import { setFilter } from '../../redux/contacts/filterSlice';
@@ -15,13 +14,6 @@ const Filter = () => {
 
   return (
     <>
-      {/* <p className={styles.p}>Find contacts by name</p> */}
-      {/* <input
-        className={styles.inputText}
-        type="text"
-        onChange={onChange}
-        value={filter}
-      /> */}
       <TextField
         id="input-with-icon-textfield"
         label="Search for contacts"
